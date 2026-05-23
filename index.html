@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Privacy Policy – Calculator Vault</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f5f7fb;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      line-height: 1.5;
+      color: #1e293b;
+      padding: 2rem 1rem;
+    }
+
+    .container {
+      max-width: 880px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 2rem;
+      box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.08);
+      overflow: hidden;
+    }
+
+    .header {
+      background: #0f172a;
+      padding: 2rem 2rem 1.5rem;
+      text-align: center;
+      border-bottom: 1px solid #1e293b;
+    }
+
+    .header h1 {
+      font-size: 1.9rem;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      color: white;
+      margin-bottom: 0.4rem;
+    }
+
+    .header .sub {
+      color: #94a3b8;
+      font-size: 0.95rem;
+    }
+
+    .content {
+      padding: 2rem 2rem 2.5rem;
+    }
+
+    .badge {
+      background: #eef2ff;
+      color: #1e40af;
+      display: inline-block;
+      padding: 0.2rem 0.8rem;
+      border-radius: 40px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 1rem;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin: 1.6rem 0 0.8rem 0;
+      color: #0f172a;
+    }
+
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin: 1.2rem 0 0.4rem 0;
+      color: #1e293b;
+    }
+
+    p, li {
+      color: #334155;
+      margin-bottom: 0.75rem;
+    }
+
+    ul {
+      margin: 0.5rem 0 1rem 1.5rem;
+    }
+
+    li {
+      margin-bottom: 0.3rem;
+    }
+
+    hr {
+      margin: 1.8rem 0;
+      border: none;
+      border-top: 1px solid #e2e8f0;
+    }
+
+    .footer {
+      background: #f8fafc;
+      padding: 1.2rem 2rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: #475569;
+      border-top: 1px solid #e2e8f0;
+    }
+
+    .contact {
+      background: #f1f5f9;
+      padding: 1rem 1.2rem;
+      border-radius: 1rem;
+      margin: 1.5rem 0 0.5rem;
+    }
+
+    a {
+      color: #2563eb;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 640px) {
+      .content {
+        padding: 1.5rem;
+      }
+      .header h1 {
+        font-size: 1.6rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>🔐 Calculator Vault</h1>
+    <div class="sub">Privacy Policy for Calculator Vault</div>
+    <div style="margin-top: 1rem;"><span class="badge">🔒 Local-Only Privacy</span></div>
+  </div>
+
+  <div class="content">
+    <p><strong>Effective date:</strong> <span id="effectiveDate"></span></p>
+    <p><strong>App package name:</strong> <code>com.yash.securevault</code><br>
+    <strong>Store listing:</strong> Calculator Vault – Secret Photo Locker</p>
+
+    <p>This privacy policy applies to <strong>Calculator Vault</strong> (internal Expo app name: <code>Calculator</code>), a secure media vault app built with Expo and React Native. The app is designed to store user-selected photos and videos locally on the device.</p>
+
+    <h2>1. No Data Collection – Offline First</h2>
+    <p>Calculator Vault <strong>does NOT collect, transmit, or share any personal data</strong>. There are no analytics SDKs, no crash reporting services, and no third-party tracking libraries in the current app code.</p>
+
+    <h2>2. What Information Is Stored Locally</h2>
+    <ul>
+      <li><strong>Encrypted PIN hash + salt</strong> – The app stores the user PIN as a SHA-256 hash with a random salt in secure storage via <code>expo-secure-store</code>. The raw PIN is never stored in plaintext.</li>
+      <li><strong>Master encryption key</strong> – A randomly generated vault key is stored securely with <code>expo-secure-store</code> and is used to encrypt all vault data.</li>
+      <li><strong>Encrypted media files</strong> – Imported photos and videos are encrypted using AES-256-CBC with a random IV and saved in the app’s private documents folder under <code>.vault/</code>.</li>
+      <li><strong>Encrypted metadata</strong> – File metadata (including original filename, MIME type, extension, and item state) is encrypted and saved inside <code>.vault/metadata.json</code>. Metadata is not stored in plaintext.</li>
+    </ul>
+    <p><strong>All data remains on the user’s device.</strong> No app data is uploaded to any cloud service or external server.</p>
+
+    <h2>3. Permissions Used & Why</h2>
+    <ul>
+      <li><strong>READ_MEDIA_IMAGES / READ_MEDIA_VIDEO</strong> – Used only when the user explicitly selects photos or videos to import into the vault.</li>
+      <li><strong>expo-image-picker</strong> is used for gallery import. The app does not automatically scan your library.</li>
+      <li><strong>VIBRATE</strong> – Used for haptic feedback in the app interface.</li>
+      <li><strong>RECORD_AUDIO</strong> – Present in the Android manifest but not actively used by the current release of the app.</li>
+      <li><strong>USE_BIOMETRIC / USE_FINGERPRINT</strong> – Included in Android permissions configuration but the current app code does not implement biometric unlock in the active release.</li>
+      <li><strong>No internet permission</strong> is requested for normal use, and the app does not require network access to secure or view vault contents.</li>
+    </ul>
+
+    <h2>4. How Your Media Is Protected</h2>
+    <ul>
+      <li><strong>AES-256-CBC encryption</strong> – Each file is encrypted with a random IV and the app’s master key.</li>
+      <li><strong>Obfuscated storage names</strong> – Vault files are saved under randomized <code>.dat</code> names so nobody can identify them by browsing the files.</li>
+      <li><strong>Temporary cache handling</strong> – Decrypted content is written only to the app cache directory for preview/export and is removed when the app closes the viewer or deletes the item.</li>
+      <li><strong>App-private storage</strong> – Encrypted vault data is stored in the app’s private filesystem. Android/iOS remove this data automatically when the app is uninstalled.</li>
+    </ul>
+
+    <h2>5. Data Deletion</h2>
+    <p>Vault data is deleted when:</p>
+    <ul>
+      <li>You delete an item inside the vault – the encrypted file and its metadata entry are removed.</li>
+      <li>You uninstall the app – the operating system deletes all app-private storage, including <code>.vault/</code> and cache directories.</li>
+    </ul>
+    <p>If the user enables the optional "delete original after import" setting, the app will also attempt to remove the selected source media from the device gallery after import.</p>
+
+    <h2>6. Third-Party Services</h2>
+    <p><strong>None.</strong> The current app code does not integrate external analytics, advertising, crash reporting, or cloud services. Dependencies such as React Native, Expo modules, and <code>crypto-js</code> are used only for local app functionality.</p>
+
+    <h2>7. Children’s Privacy</h2>
+    <p>Calculator Vault does not collect any personal information from children under 13. The app is not designed for kids, and because it stores data locally, no child data is transmitted to third parties.</p>
+
+    <h2>8. Changes to This Privacy Policy</h2>
+    <p>We may update this policy to reflect code or configuration changes. Any updates will be posted on this page and the effective date will be updated accordingly.</p>
+
+    <div class="contact">
+      <h3 style="margin-top: 0;">📬 Contact</h3>
+      <p>If you have privacy-related questions or concerns, please contact:<br>
+      <strong>Email:</strong> <a href="mailto:seemayash012@gmail.com">seemayash012@gmail.com</a><br>
+      </p>
+    </div>
+
+    <hr>
+    <p style="font-size: 0.85rem; text-align: center;">🔒 <strong>Summary:</strong> Calculator Vault stores all user media locally, encrypts vault data, and does not share personal information outside the device.</p>
+  </div>
+
+  <div class="footer">
+    &copy; <span id="currentYear"></span> Calculator Vault – All rights reserved.
+  </div>
+</div>
+
+<script>
+  const today = new Date();
+  const formattedDate = today.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+  document.getElementById('effectiveDate').innerText = formattedDate;
+  document.getElementById('currentYear').innerText = today.getFullYear();
+</script>
+</body>
+</html>
